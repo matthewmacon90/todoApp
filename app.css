@@ -1,0 +1,57 @@
+.addTaskBtn {
+    border-radius: 15px;
+    display: flex;
+    font-size: 1rem;
+    justify-content: center;
+    margin-top: 10px;
+    padding: 5px;
+    width: 100px;
+}
+
+.removeTaskBtn {
+    border-radius: 15px;
+    /* display: flex; */
+    /* font-size: 1rem; */
+    justify-content: center;
+    margin-top: 10px;
+    margin-left: 10px;
+    padding: 5px;
+    width: 100px;
+}
+
+.dark .formContainer .listContainer{
+    background-color: black;
+    border-color: white;
+    color: white;
+}
+
+.formContainer {
+    border: 8px solid black;
+    font-size: 1.5rem;
+    padding: 15px;
+}
+
+h2 {
+    margin-left: 38px;
+    margin-bottom: 5px;
+    text-decoration: underline;
+}
+
+.li{
+    text-decoration: line-through;
+}
+
+.listContainer{
+    border: 8px solid black;
+    font-size: 1.1rem;
+    margin-top: 10px;
+}
+
+ul{
+    margin-top: 5px;
+}
+
+
+
+
+
