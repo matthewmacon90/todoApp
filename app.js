@@ -3,19 +3,6 @@ const input = document.querySelector('input#createTask');
 const ul = document.querySelector('#list');
 const li = document.querySelectorAll('li');
 
-//Found this code online to create a UUID. I figured I could use this id to pinpoint which divs to remove from local storage later, if needed. I do need help understanding this code. 
-// const createUUID = () => {
-//     let dateTime = new Date().getTime();
-
-//     let uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, 
-//     function(char) {
-//         let randomNum = (dateTime + Math.random() * 16)%16 | 0;
-//         dateTime = Math.floor(dateTime/16);
-//         return (char ==='x' ? randomNum : (randomNum &0x3 | 0x8)).toString(16);
-//     });
-//     return uuid;
-// };
-
 const addToLocalStorage = (inputValue) => {
     localStorage.setItem('todo', JSON.stringify(inputValue));
     let todos = [];
@@ -23,23 +10,7 @@ const addToLocalStorage = (inputValue) => {
     if(todosJSON){
         todos = JSON.parse(todosJSON);
     };
-
-
-    // const listContents = JSON.parse(localStorage.getItem('todo')) || [];
-    // listContents.push(inputValue);
-    // localStorage.setItem('todo', JSON.stringify(listContents));
-    // console.log(localStorage);
-    // return JSON.parse();
 };
-
-// const loadLocalStorage = (listContents) => {
-//     console.log(listContents);
-// };
-// loadLocalStorage();
-
-// const removeFromLocalStorage = (UUID) => {
-//     return localStorage.removeItem(UUID);
-// };
 
 form.addEventListener('submit', function (event) {
     event.preventDefault();
@@ -53,9 +24,6 @@ form.addEventListener('submit', function (event) {
 const newTask = () => {
     const newItem = document.createElement('li');
     newItem.innerText = input.value;
-    
-    // newItem.setAttribute('data-UUID', createUUID());
-    // const uuidStore = newItem.dataset.uuid;
 
     ul.appendChild(newItem);
 
@@ -67,8 +35,6 @@ const newTask = () => {
     newItem.appendChild(removeItem);
 
     addToLocalStorage(input.value);
-    // loadLocalStorage(addToLocalStorage);
-
     input.value = '';
 };
 
