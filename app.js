@@ -1,27 +1,29 @@
 const form = document.querySelector('#taskCreator');
 const input = document.querySelector('#createTask');
 const taskList = document.querySelector('#list');
+const taskCollection = [];
 
-const addToLocalStorage = (inputValue) => {
+const addToLocalStorage = () => {
     // let todoListContents = localStorage.setItem('todo', JSON.stringify(inputValue)) || [];
 
-    // let arrayList = [];
     // let valueString = localStorage.getItem('todo', inputValue);
     // arrayList = valueString;
-    // console.log(`Arraylist`, arrayList);
+    console.log(`addToLocalStorage taskCollection:`, taskCollection);
+    return localStorage.setItem('todo', JSON.stringify(taskCollection));
+    
 
-
-    let todoListContents = JSON.parse(localStorage.getItem('todo')) || [];
-    localStorage.setItem('todo', JSON.stringify(inputValue));
-    console.log(todoListContents);
-    return todoListContents
+    // let todoListContents = JSON.parse(localStorage.getItem('todo')) || [];
+    // localStorage.setItem('todo', JSON.stringify(inputValue));
+    // console.log(todoListContents);
 };
 
 
 // Using this to load the values to the DOM from local storage.
-const retrieveLocalStorage = (todoListContents) => {
+const retrieveLocalStorage = () => {
     const keys = Object.keys(localStorage);
-    let i = keys.length;
+    let i = keys
+    console.log('i.length: ', i.length);
+    console.log('i: ', i);
 
     while(i--) {
         const newTask = document.createElement('li');
@@ -33,7 +35,7 @@ const retrieveLocalStorage = (todoListContents) => {
         removeBtn.innerText = 'Remove Task';
         removeBtn.classList.add('removeTaskBtn');
         newTask.appendChild(removeBtn);
-    }
+    };
 };
 retrieveLocalStorage();
 
@@ -57,8 +59,12 @@ const newTask = () => {
 
     newTask.appendChild(removeBtn);
 
-    addToLocalStorage(input.value);
+    taskCollection.push(input.value);
+    // console.log(`newTask taskCollection:`, taskCollection);
+
+    addToLocalStorage();
     input.value = '';
+
 };
 
 taskList.addEventListener('click', function (event) {
