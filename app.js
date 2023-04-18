@@ -1,33 +1,25 @@
 const form = document.querySelector('#taskCreator');
 const input = document.querySelector('#createTask');
 const taskList = document.querySelector('#list');
-const taskCollection = [];
 
 const addToLocalStorage = (inputValue) => {
-    let taskID = `todo${taskCollection.length}`;
-    localStorage.setItem(taskID, inputValue);
-
-    let getInfo = localStorage.getItem(taskID);
-    taskCollection.push(getInfo);
-    console.log('getInfo: ', getInfo);
-    console.log(`taskCollection: `, taskCollection);
+    let key = `todo${localStorage.length}`;
+    localStorage.setItem(key, inputValue);
 };
 
-
-// Using this to load the values to the DOM from local storage.
 const retrieveLocalStorage = () => {
-    let i = taskCollection.length;
-    while(i > 0) {
+    const tasks = Object.values(localStorage);
+
+    tasks.forEach(task => {
         const newTask = document.createElement('li');
-        newTask.innerText = JSON.parse(taskCollection[JSON.parse(i)]);
+        newTask.innerText = task;
         taskList.appendChild(newTask);
 
         const removeBtn = document.createElement('button');
         removeBtn.innerText = 'Remove Task';
         removeBtn.classList.add('removeTaskBtn');
         newTask.appendChild(removeBtn);
-        i--;
-    };
+    });
 };
 retrieveLocalStorage();
 
@@ -50,9 +42,6 @@ const newTask = () => {
     removeBtn.classList.add('removeTaskBtn');
 
     newTask.appendChild(removeBtn);
-
-    // taskCollection[`todo ${taskCollection.length}`] = input.value;
-    // console.log(`newTask taskCollection:`, taskCollection);
 
     addToLocalStorage(input.value);
     input.value = '';
